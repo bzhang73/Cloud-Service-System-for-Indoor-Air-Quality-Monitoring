@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>空气质量检测和防治系统</title>
+<link href="http://www.pm25.com/css/common.css" rel="stylesheet" type="text/css" />
+ <link href="http://www.pm25.com/css/index.css" rel="stylesheet" type="text/css" /> <script src="http://www.pm25.com/sea-modules/seajs/seajs/2.2.1/sea.js"></script>
+<script src="http://www.pm25.com/sea-modules/conf/common.js"></script>
+<!--[if IE]>
+<style type="text/css">
+.mini_xiaotieshi a:hover{filter:alpha(opacity=100);}
+</style>
+<![endif]-->
+</head>
+
+<body>
+
+<!--导航-->
+<div class="menu_width">
+         <div class="menu">
+              <ul class="menu_list">
+                    <!---当前页面是哪个栏目，只用在li的class里再加个" current "就行了-->
+                    <li class="menu_2"><a  href="Shishi.html"><i></i><span>实时监测</span></a></li>
+                    <li class="menu_3"><a  class="current" href="People.html"><i></i><span>特殊人群</span></a></li>
+                    <li class="menu_4"><a  href="Guanyu.html"><i></i><span>关于和反馈</span></a></li>
+                    <li class="menu_5"><a  href="logout.html"><i></i><span>我要注销</span></a></li>
+              </ul>
+         </div>   
+</div>    
+
+<script>
+seajs.use(['$'], function(){
+$(function(){
+
+  // 头部搜索
+  $('.topnav_search_btn').click(function(){
+    var str = encodeURI($('.topnav_search_city_text').val());
+    window.location = '/so/' + str + '/all';
+  });
+
+  $('.topnav_search_city_text').bind("keyup", function(event){
+    if(event.keyCode == 13){
+      var str = encodeURI($('.topnav_search_city_text').val());
+      window.location = '/so/' + str + '/all';
+    }
+  });
+
+  $(".topnav_sitemap").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_sitemap_active").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_phone").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+
+  $(".topnav_app_active").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+  
+});
+});
+</script><div class="abp" style='display:none;top:40px;'>
+  <div id="danmu" class="container" style="width:100%;height:290px;"></div>
+</div>
+<link href="http://www.pm25.com/sea-modules/pm25/danmu/style.min.css" rel="stylesheet" type="text/css" />
+<!--banner上的阴影-->
+<div class="banner_shadow"></div>
+
+<!--始终固定在最上边的内容显示-->
+<div class="banner_index_width">
+        <div class="banner_index">             
+
+              <!--[if lte IE 8]> 
+              <style type="text/css">
+              a.bi_opentanmu{display:none;}
+              </style>
+              <![endif]--> 
+               
+              
+        </div>
+</div>
+
+<!--banner部分-底部-晴-->
+<div class="weather_sunny_width">
+   <div class="shatan_width">
+    <div class="weather_sunny_shatan"><i class="weather_sunny_shatan_content"></i></div>
+      </div>
+     <div class="weather_sunny">
+            <div class="weather_sunny_taiyang"><i class="weather_sunny_taiyang_content"></i></div>
+            <div class="weather_sunny_dayun"><i class="weather_sunny_dayun_content"></i></div>
+            <div class="weather_sunny_xiaoyun"><i class="weather_sunny_xiaoyun_content"></i></div>
+            <div class="weather_sunny_qiqiu"><i id="qiqiu_a"class="weather_sunny_qiqiu_content"></i></div>
+            <div class="weather_sunny_dashu"><i class="weather_sunny_dashu_content"></i></div>
+            <div class="weather_sunny_xiaoshu"><i class="weather_sunny_xiaoshu_content"></i></div>
+            <div class="weather_sunny_xiong"><i class="weather_sunny_xiong_content"></i></div>
+            <div class="weather_sunny_yingzi"><i class="weather_sunny_yingzi_content"></i></div>
+            <div class="weather_sunny_yugan"><i class="weather_sunny_yugan_content"></i></div>
+            <div class="weather_sunny_yugou"><i class="weather_sunny_yugou_content"></i></div>
+            <div class="weather_sunny_shuitong"><i class="weather_sunny_shuitong_content"></i></div>
+            <div class="weather_sunny_dayu"><i class="weather_sunny_dayu_content"></i></div>
+            <div class="weather_sunny_xiaoyu"><i class="weather_sunny_xiaoyu_content"></i></div>
+   </div>
+</div>
+
+<!--主体内容-->
+<div class="index_main_width">
+    <div class="index_main">
+        <div class="im_shenghuo">
+              <p id="shzn" class="im_shenghuo_title">今日生活指南</p>
+              <ul class="im_shenghuo_details">
+                     <!--这下边的内容会根据大图状态不同，它的颜色不同“im_shenghuo_item_color_sunny”-名字是大图区域名字的后缀-->
+                    <li class="im_shenghuo_kouzhao"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+                        <div class="im_shenghuo_item_hover im_shenghuo_item_color_sunny" style="display:none;">
+                             <p class="im_shenghuo_item_hover_title"><i></i><span>无需口罩</span></p>
+                             <p class="im_shenghuo_item_hover_info">请大口的呼吸自然空气</p>
+                        </div>
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>口罩指数</dd>
+                        </dl>
+                    </li>
+                     <li class="im_shenghuo_yundong"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>运动指数</dd>
+                        </dl>
+                    </li>
+                     <li class="im_shenghuo_kaichuang"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>开窗指数</dd>
+                        </dl>
+                    </li>
+                     <li class="im_shenghuo_guomin"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>过敏指数</dd>
+                        </dl>
+                    </li>
+                     <li class="im_shenghuo_jinghua"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>净化空气指数</dd>
+                        </dl>
+                    </li>
+                     <li class="im_shenghuo_chuxing" style="border-right:none;"> 
+                        <!--鼠标划到对应的li上的时候，显示这个div-->
+                        
+                        <dl>
+                             <dt><i></i></dt>
+                             <dd>出行指数</dd>
+                        </dl>
+                    </li>
+              </ul>
+        </div>
+         <div style="width:970px; height: 100px; margin:0 auto 10px;"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+         
+         <!--左侧内容-->
+        <div class="index_main_left">
+                <!--特殊人群防护-->
+                <div class="iml_people">
+                     <p class="im_people_title">特殊人群防护</p>
+                     <ul>
+                          <!--鼠标状态又来了-li里增加“im_people_yunfu_hover”-->
+                          <li class="im_people_yunfu">
+                              <a href="Yunfu.html" target="main">
+                               <span><i></i></span>
+                               <p class="btn_yunfu">孕妇</p>
+                              </a>
+                          </li>
+                          <!--鼠标状态又来了-li里增加“im_people_laoren_hover”-->
+                          <li class="im_people_laoren ">
+                              <a href="Laoren.html" target="main">
+                               <span><i></i></span>
+                               <p class="btn_laoren">老人小孩</p>
+                              </a>
+                          </li>
+                          <!--鼠标状态又来了-li里增加“im_people_mingan_hover”-->
+                          <li class="im_people_mingan ">
+                              <a href="Mingan.html" target="main">
+                               <span><i></i></span>
+                               <p class="btn_mingan">敏感人群</p>
+                              </a>
+                          </li>
+                          <!--鼠标状态又来了-li里增加“im_people_jibing_hover”-->
+                          <li class="im_people_jibing " style="margin-right:0px;">
+                              <a href="Jibing.html" target="main">
+                               <span><i></i></span>
+                               <p class="btn_jibing">疾病人群</p>
+                              </a>
+                          </li>
+                     </ul>
+                </div>
+          </div>
+
+<!-- pm970x90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-6372832400185284"
+     data-ad-slot="4336846259"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+       
+</body>
+</html>

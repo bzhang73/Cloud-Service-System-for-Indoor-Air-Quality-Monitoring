@@ -1,0 +1,814 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>空气质量监测与防治系统</title>
+<link href="http://www.pm25.com/css/common.css" rel="stylesheet" type="text/css" />
+ <link href="http://www.pm25.com/css/citydata.css" rel="stylesheet" type="text/css" /> <script src="http://www.pm25.com/sea-modules/seajs/seajs/2.2.1/sea.js"></script>
+<script src="http://www.pm25.com/sea-modules/conf/common.js"></script>
+<!--[if IE]>
+<style type="text/css">
+.mini_xiaotieshi a:hover{filter:alpha(opacity=100);}
+</style>
+<![endif]-->
+</head>
+
+<body>
+<!--导航-->
+<div class="menu_width">
+         <div class="menu">
+              <ul class="menu_list">
+                    <!---当前页面是哪个栏目，只用在li的class里再加个" current "就行了-->
+                    <li class="menu_2"><a  class="current"  href="home.html"><i></i><span>实时监测</span></a></li>
+                    <li class="menu_3"><a  href="People.html"><i></i><span>特殊人群</span></a></li>
+                    <li class="menu_4"><a  href="Guanyu.html"><i></i><span>关于和反馈</span></a></li>
+                    <li class="menu_5"><a  href="logout.html"><i></i><span>我要注销</span></a></li>
+                    <div class="clear"></div>
+              </ul>
+         </div>   
+</div>
+<!--banner上的阴影-->
+<div class="banner_shadow"></div>
+
+<script>
+seajs.use(['$'], function(){
+$(function(){
+
+  // 头部搜索
+  $('.topnav_search_btn').click(function(){
+    var str = encodeURI($('.topnav_search_city_text').val());
+    window.location = '/so/' + str + '/all';
+  });
+
+  $('.topnav_search_city_text').bind("keyup", function(event){
+    if(event.keyCode == 13){
+      var str = encodeURI($('.topnav_search_city_text').val());
+      window.location = '/so/' + str + '/all';
+    }
+  });
+
+  $(".topnav_sitemap").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_sitemap_active").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_phone").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+
+  $(".topnav_app_active").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+  
+});
+});
+</script>
+<!--banner部分-->
+<!--当前城市不同等级不同颜色背景"banner_bg_level3"这里后边的数字是1~6-->
+<div class="citydata_banner_width banner_bg_level1">
+    <div class="citydata_banner">
+            <div class="citydata_banner_top">
+                      <div class="citydata_changecity">
+                           
+                           <span class="city_name">成都市双流区</span>
+                           <span class="city_description">实时空气质量指数（AQI）</span>
+                      </div>
+                      <div class="citydata_updatetime">更新时间：2016-10-28 15:00</div>
+                      <div class="clear"></div>
+            </div>
+    
+            <!--透明层-->
+            <div class="citydata_banner_opacity">
+                      <div class="cbo_left">
+                                 <div class="cbol_aqi">
+                                       <a class="cbol_aqi_num"  target="_blank">51</a>
+                                       <a class="cbol_aqi_name"  target="_blank">AQI指数</a>                                
+                                 </div> 
+                                 <div class="cbol_wuranwu">
+                                       <!--没有污染物数据的时候，增加个“cbol_wuranwu_nodata”，删掉里面内容再加个i标签"<i></i>"-->
+                                       <a class="cbol_wuranwu_num cbol_wuranwu_nodata"  target="_blank"><%= userlist[userlist.length-1].name  %></a>
+                                       <a class="cbol_wuranwu_name"  target="_blank">首要污染物</a>
+                                 </div> 
+                                 <div class="cbol_nongdu">
+                                       <!--没有浓度数据的时候，增加个“cbol_nongdu_nodata”，删掉里面内容换成个i标签"<i></i>"-->
+                                       <a class="cbol_nongdu_num "  target="_blank">
+                                                                                        <span class="cbol_nongdu_num_1"><%= userlist[userlist.length-1].value  %></span>
+                                            <span class="cbol_nongdu_num_2">微克/立方米</span>
+                                                                               </a>
+                                       <a class="cbol_nongdu_name"  target="_blank">气体浓度</a>
+                                 </div> 
+                      </div>
+                      <div class="cbo_right">
+                                <div class="cbor_gauge">
+                                      <!--指针的位置不同的等级“cbor_gauge_level1”改后边的数字，里面的文字包含"优，良，轻度污染，中度污染，重度污染，严重污染"-->
+                                      <span class="cbor_gauge_level2">良</span>
+                                      <p class="cbor_gauge_img"></p>
+                                      <p class="cbor_gauge_num">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500</p>
+                                </div>
+                                <div class="cbor_tips">
+                                      <p>
+                                          <span>温馨提示：</span>
+                                          空气很好，可以外出活动，呼吸新鲜空气。                                      </p>
+                                </div>
+                      </div>
+                      <div class="clear"></div>
+            </div>
+            <div class="cbo_opacity"></div>
+    </div>
+</div>
+
+<!--主体内容-->
+<div class="main_width">
+    <div class="main">
+        <!--监测点数据-->                   
+                <div class="panel_jiance">
+                  <p class="pg_title">实时数据</p> 
+                  <div class="pj_area">
+                          <div class="pj_area_tab">                                
+                               <a class="tab_caqi current" href="javascript:void(0)">CO<i></i></a>
+                               <a class="tab_maqi" href="javascript:void(0)">Gas<i></i></a>
+                               <a class="tab_caqi" href="javascript:void(0)">HCHO<i></i></a>
+                            
+                                <div class="clear"></div>
+                          </div>
+                          <!--详细数据开始-->
+                          <div class="pj_area_data">
+                                 <div class="pj_area_data_title">
+                                    <span class="pjadt_location">监测站点</span>
+     
+                                       <span class="pjadt_quality">空气质量状况</span>
+                                       <span class="pjadt_wuranwu">首要污染物</span>
+                                       <span class="pjadt_pm25">浓度</span>
+                                       <div class="clear"></div>
+                                 </div>
+                                  <ul class="pj_area_data_details">
+                                    <!--鼠标划上去后，要有个li的背景变绿色效果，增加li的"pj_area_data_item_active"就行-->
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+ <span class="pjadt_aqi"><%= userlist[userlist.length-1].value  %>μg/m³<i class=""></i></span>
+
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+ <span class="pjadt_aqi"><%= userlist[userlist.length-2].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+
+<span class="pjadt_aqi"><%= userlist[userlist.length-3].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+
+ <span class="pjadt_aqi"><%= userlist[userlist.length-4].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+
+                                        <span class="pjadt_aqi"><%= userlist[userlist.length-5].value  %>μg/m³<i class=""></i></span>
+
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+ <span class="pjadt_aqi"><%= userlist[userlist.length-6].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+<span class="pjadt_aqi"><%= userlist[userlist.length-7].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+<span class="pjadt_aqi"><%= userlist[userlist.length-8].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                      
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+ <span class="pjadt_aqi"><%= userlist[userlist.length-9].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO</a>
+ <span class="pjadt_aqi"><%= userlist[userlist.length-10].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                     </ul>
+
+<ul class="pj_area_data_details" style="display: none;">
+                                    <!--鼠标划上去后，要有个li的背景变绿色效果，增加li的"pj_area_data_item_active"就行-->
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist1[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-1].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-2].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist1[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-3].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-4].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-5].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-6].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist1[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+ <span class="pjadt_aqi"><%= userlist1[userlist1.length-7].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist1[1].name  %></a>
+                                      
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+  <span class="pjadt_aqi"><%= userlist1[userlist1.length-8].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-9].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist1[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">CO2</a>
+<span class="pjadt_aqi"><%= userlist1[userlist1.length-10].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                         </ul> 
+
+
+                                 <ul class="pj_area_data_details" style="display: none;">
+                                    <!--鼠标划上去后，要有个li的背景变绿色效果，增加li的"pj_area_data_item_active"就行-->
+                                                                       <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+<span class="pjadt_aqi"><%= userlist2[userlist2.length-1].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+ <span class="pjadt_aqi"><%= userlist2[userlist2.length-2].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+<span class="pjadt_aqi"><%= userlist2[userlist2.length-3].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+ <span class="pjadt_aqi"><%= userlist2[userlist2.length-4].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+ <span class="pjadt_aqi"><%= userlist2[userlist2.length-5].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+<span class="pjadt_aqi"><%= userlist2[userlist2.length-6].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+<span class="pjadt_aqi"><%= userlist2[userlist2.length-7].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+ <span class="pjadt_aqi"><%= userlist2[userlist2.length-8].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location"><%= userlist2[1].name  %></a>
+                                        
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+<span class="pjadt_aqi"><%= userlist2[userlist2.length-9].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                                        <b></b>
+                                        <a class="pjadt_location" ><%= userlist2[1].name  %></a>
+                                       
+                                        <span class="pjadt_quality"><em class="pjadt_quality_bglevel_1">优</em></span>
+                                        <a class="pjadt_wuranwu" href="javascript:void(0)" title="—" target="_blank">HCHO</a>
+ <span class="pjadt_aqi"><%= userlist2[userlist2.length-10].value  %>μg/m³<i class=""></i></span>
+                                        <span class="pjadt_pm25"> - <em>μg/m³</em><i class=""></i></span>
+                                        <span class="pjadt_pm10"> - <em>μg/m³</em><i class=""></i></span>
+                                        <div class="clear"></div>
+                                    </li>
+                                                                     </ul>
+                          
+                          
+                          </div>
+                  </div>
+                      
+        </div>
+        <!--曲线图-->
+        <div class="panel_graph">
+             <p class="pg_title">成都市双流区空气浓度(μg/m³)变化趋势</p>
+             <div class="pg_area">
+                  <div class="pg_area_tab">
+                         <a class="tab_24h current" href="javascript:void(0)">最近24小时<i></i></a>
+                         <a class="tab_30d" href="javascript:void(0)">最近30天<i></i></a>
+                         <div class="clear"></div>
+                   </div>
+                   <!--曲线图从这里开始,放到这里-->
+                   <div id="pg_content_24h" class="pg_content" style="background-color:#f7f7f7;"></div>
+                   <div id="pg_content_30d" class="pg_content" style="background-color:#f7f7f7; display:none;"></div>
+             </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+seajs.use(['$', 'cookie'], function($, Cookie){
+  $(document).ready(function(){
+    $(window).scroll(function(){
+      var curh = $(document).scrollTop();
+      if(curh > 300) {
+      $('.quick_item').fadeIn(100);
+      }else{
+      $('.quick_item').fadeOut(100);
+      }
+    });
+    $('.quick_item_back').click(function(){
+    $('html, body').animate({scrollTop:0}, 'slow');});
+  });
+});
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_30089631'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30089631' type='text/javascript'%3E%3C/script%3E"));</script>
+<div style="display:none">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb3de58f8471ab2214a3e7d885a987266' type='text/javascript'%3E%3C/script%3E"));
+</script></div><style>
+.autocomplete-suggestions{position:absolute; z-index:50; background-color:#fff; width:200px;box-shadow:0 1px 5px rgba(0,0,0,.2);-moz-box-shadow:0 1px 5px rgba(0,0,0,.2);-webkit-box-shadow:0 1px 5px rgba(0,0,0,.2);-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; overflow-x:hidden;margin-top:5px;}
+.autocomplete-suggestion{}
+.autocomplete-suggestion a{display:block;line-height:30px; text-indent:5px; border-bottom:#ececec solid 1px; margin:0px 10px;}
+.autocomplete-suggestion a:hover{color:#4a9828; background-color:#ececec;}
+.minicity {right: -900px;}
+</style>
+
+<!--侧边空气弹出--><!--不能动-->
+<link href="/sea-modules/jquery/tinyscrollbar/tinyscrollbar.css" rel="stylesheet" type="text/css">
+<div id="scrollbar1" class="minicity" style="display:block;">
+    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+    <div class="minicity_content viewport">
+        <div class="overview">
+         	<div class="city_province" style="display:block;">
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+seajs.use(['$', 'tabs', 'cookie', 'tinyscrollbar', 'autocomplete'], function($, Tabs, Cookie){
+
+  $(document).ready(function(){
+    new Tabs({
+        element: '.minicity',
+        triggers: '.city_control_tab a',
+        triggerType: 'click',
+        activeTriggerClass: 'city_control_current',
+        panels: '.city_province',
+        activeIndex: 0
+    });
+
+    $('.tab_pc').click(function(){
+      $('.pc_a_z').show();
+      $('.fc_a_z').hide();
+    });
+
+    $('.tab_fc').click(function(){
+      $('.pc_a_z').hide();
+      $('.fc_a_z').show();
+    });
+
+    $('.minicity_clk').click(function(){
+      $('.minicity').animate({right:0}, 'slow');
+    });
+    $('.mt_close').click(function(){
+      $('.minicity').animate({right:'-900px'}, 'slow');
+    });
+
+    var h = $(window).height()-132;if(h<0)h=0;
+    $(".viewport").css('height',h);
+    $('#scrollbar1').tinyscrollbar();
+
+    window.onresize = function(){
+      var h = $(window).height()-132;if(h<0)h=0;
+      $(".viewport").css('height',h);
+      $(".scrollbar").css('height',h);
+      $(".track").css('height',h);
+      $('#scrollbar1').tinyscrollbar();
+    }
+
+    $('.city_citys').addClass('hide');
+
+    var cities = [{"value":"\u4e09\u4e9a","data":"sanya","fl":"SY"},{"value":"\u4e09\u95e8\u5ce1","data":"sanmenxia","fl":"SMX"},{"value":"\u4e0a\u6d77","data":"shanghai","fl":"SH"},{"value":"\u4e1c\u839e","data":"dongguan","fl":"dg"},{"value":"\u4e1c\u8425","data":"dongying","fl":"DY"},{"value":"\u4e2d\u5c71","data":"zhongshan","fl":"ZS"},{"value":"\u4e34\u5b89","data":"linan","fl":"LA"},{"value":"\u4e34\u6c7e","data":"linfen","fl":"LF"},{"value":"\u4e34\u6c82","data":"linyi","fl":"LY"},{"value":"\u4e39\u4e1c","data":"dandong","fl":"DD"},{"value":"\u4e3d\u6c34","data":"lishui","fl":"LS"},{"value":"\u4e49\u4e4c","data":"yiwu","fl":"YW"},{"value":"\u4e4c\u9c81\u6728\u9f50","data":"wulumuqi","fl":"WLMQ"},{"value":"\u4e5d\u6c5f","data":"jiujiang","fl":"JJ"},{"value":"\u4e73\u5c71","data":"rushan","fl":"RS"},{"value":"\u4e91\u6d6e","data":"yunfu","fl":"YF"},{"value":"\u4f5b\u5c71","data":"foshan","fl":"FS"},{"value":"\u4fdd\u5b9a","data":"baoding","fl":"BD"},{"value":"\u514b\u62c9\u739b\u4f9d","data":"kelamayi","fl":"KLMY"},{"value":"\u5170\u5dde","data":"lanzhou","fl":"LZ"},{"value":"\u5305\u5934","data":"baotou","fl":"BT"},{"value":"\u5317\u4eac","data":"beijing","fl":"BJ"},{"value":"\u5317\u6d77","data":"beihai","fl":"BH"},{"value":"\u5357\u4eac","data":"nanjing","fl":"NJ"},{"value":"\u5357\u5145","data":"nanchong","fl":"NC"},{"value":"\u5357\u5b81","data":"nanning","fl":"NN"},{"value":"\u5357\u660c","data":"nanchang","fl":"NC"},{"value":"\u5357\u901a","data":"nantong","fl":"NT"},{"value":"\u5373\u58a8","data":"jimo","fl":"JM"},{"value":"\u53a6\u95e8","data":"xiamen","fl":"XM"},{"value":"\u53e5\u5bb9","data":"jurong","fl":"JR"},{"value":"\u53f0\u5dde","data":"taizhou","fl":"TZ"},{"value":"\u5408\u80a5","data":"hefei","fl":"HF"},{"value":"\u5409\u6797","data":"jilin","fl":"JL"},{"value":"\u5434\u6c5f","data":"wujiang","fl":"WJ"},{"value":"\u547c\u548c\u6d69\u7279","data":"huhehaote","fl":"HHHT"},{"value":"\u54b8\u9633","data":"xianyang","fl":"XY"},{"value":"\u54c8\u5c14\u6ee8","data":"haerbin","fl":"HEB"},{"value":"\u5510\u5c71","data":"tangshan","fl":"TS"},{"value":"\u5609\u5174","data":"jiaxing","fl":"JX"},{"value":"\u5609\u5cea\u5173","data":"jiayuguan","fl":"JYG"},{"value":"\u5927\u540c","data":"datong","fl":"DT"},{"value":"\u5927\u5e86","data":"daqing","fl":"DQ"},{"value":"\u5927\u8fde","data":"dalian","fl":"DL"},{"value":"\u5929\u6d25","data":"tianjin","fl":"TJ"},{"value":"\u592a\u4ed3","data":"taicang","fl":"TC"},{"value":"\u592a\u539f","data":"taiyuan","fl":"TY"},{"value":"\u5a01\u6d77","data":"weihai","fl":"WH"},{"value":"\u5b81\u6ce2","data":"ningbo","fl":"NB"},{"value":"\u5b89\u9633","data":"anyang","fl":"AY"},{"value":"\u5b9c\u5174","data":"yixing","fl":"YX"},{"value":"\u5b9c\u5bbe","data":"yibin","fl":"YB"},{"value":"\u5b9c\u660c","data":"yichang","fl":"YC"},{"value":"\u5b9d\u9e21","data":"baoji","fl":"BJ"},{"value":"\u5bbf\u8fc1","data":"suqian","fl":"SQ"},{"value":"\u5bcc\u9633","data":"fuyang","fl":"FY"},{"value":"\u5bff\u5149","data":"shouguang","fl":"SG"},{"value":"\u5cb3\u9633","data":"yueyang","fl":"YY"},{"value":"\u5e38\u5dde","data":"changzhou","fl":"CZ"},{"value":"\u5e38\u5fb7","data":"changde","fl":"CD"},{"value":"\u5e38\u719f","data":"changshu","fl":"CS"},{"value":"\u5e73\u5ea6","data":"pingdu","fl":"PD"},{"value":"\u5e73\u9876\u5c71","data":"pingdingshan","fl":"PDS"},{"value":"\u5e7f\u5dde","data":"guangzhou","fl":"GZ"},{"value":"\u5e93\u5c14\u52d2","data":"kuerle","fl":"KEL"},{"value":"\u5eca\u574a","data":"langfang","fl":"LF"},{"value":"\u5ef6\u5b89","data":"yanan","fl":"YA"},{"value":"\u5f00\u5c01","data":"kaifeng","fl":"KF"},{"value":"\u5f20\u5bb6\u53e3","data":"zhangjiakou","fl":"ZJK"},{"value":"\u5f20\u5bb6\u6e2f","data":"zhangjiagang","fl":"ZJG"},{"value":"\u5f20\u5bb6\u754c","data":"zhangjiajie","fl":"ZJJ"},{"value":"\u5f90\u5dde","data":"xuzhou","fl":"XZ"},{"value":"\u5fb7\u5dde","data":"dezhou","fl":"DZ"},{"value":"\u5fb7\u9633","data":"deyang","fl":"DY"},{"value":"\u60e0\u5dde","data":"huizhou","fl":"HZ"},{"value":"\u6210\u90fd","data":"chengdu","fl":"CD"},{"value":"\u626c\u5dde","data":"yangzhou","fl":"YZ"},{"value":"\u627f\u5fb7","data":"chengde","fl":"CD"},{"value":"\u629a\u987a","data":"fushun","fl":"FS"},{"value":"\u62c9\u8428","data":"lasa","fl":"LS"},{"value":"\u62db\u8fdc","data":"zhaoyuan","fl":"ZY"},{"value":"\u63ed\u9633","data":"jieyang","fl":"JY"},{"value":"\u6500\u679d\u82b1","data":"panzhihua","fl":"PZH"},{"value":"\u6587\u767b","data":"wendeng","fl":"WD"},{"value":"\u65e0\u9521","data":"wuxi","fl":"WX"},{"value":"\u65e5\u7167","data":"rizhao","fl":"RZ"},{"value":"\u6606\u5c71","data":"kunshan","fl":"KS"},{"value":"\u6606\u660e","data":"kunming","fl":"KM"},{"value":"\u66f2\u9756","data":"qujing","fl":"QJ"},{"value":"\u672c\u6eaa","data":"benxi","fl":"BX"},{"value":"\u676d\u5dde","data":"hangzhou","fl":"HZ"},{"value":"\u67a3\u5e84","data":"zaozhuang","fl":"ZZ"},{"value":"\u67f3\u5dde","data":"liuzhou","fl":"LZ"},{"value":"\u682a\u6d32","data":"zhuzhou","fl":"ZZ"},{"value":"\u6842\u6797","data":"guilin","fl":"GL"},{"value":"\u6885\u5dde","data":"meizhou","fl":"MZ"},{"value":"\u6b66\u6c49","data":"wuhan","fl":"WH"},{"value":"\u6c55\u5934","data":"shantou","fl":"ST"},{"value":"\u6c55\u5c3e","data":"shanwei","fl":"SW"},{"value":"\u6c5f\u95e8","data":"jiangmen","fl":"JM"},{"value":"\u6c5f\u9634","data":"jiangyin","fl":"JY"},{"value":"\u6c88\u9633","data":"shenyang","fl":"SY"},{"value":"\u6ca7\u5dde","data":"cangzhou","fl":"CZ"},{"value":"\u6cb3\u6e90","data":"heyuan","fl":"HY"},{"value":"\u6cc9\u5dde","data":"quanzhou","fl":"QZ"},{"value":"\u6cf0\u5b89","data":"taian","fl":"TA"},{"value":"\u6cf0\u5dde","data":"taizhoushi","fl":"tz"},{"value":"\u6cf8\u5dde","data":"luzhou","fl":"LZ"},{"value":"\u6d1b\u9633","data":"luoyang","fl":"LY"},{"value":"\u6d4e\u5357","data":"jinan","fl":"JN"},{"value":"\u6d4e\u5b81","data":"jining","fl":"JN"},{"value":"\u6d77\u53e3","data":"haikou","fl":"HK"},{"value":"\u6d77\u95e8","data":"haimen","fl":"HM"},{"value":"\u6dc4\u535a","data":"zibo","fl":"ZB"},{"value":"\u6dee\u5b89","data":"huaian","fl":"HA"},{"value":"\u6df1\u5733","data":"shenzhen","fl":"SZ"},{"value":"\u6e05\u8fdc","data":"qingyuan","fl":"QY"},{"value":"\u6e29\u5dde","data":"wenzhou","fl":"WZ"},{"value":"\u6e2d\u5357","data":"weinan","fl":"WN"},{"value":"\u6e56\u5dde","data":"huzhou","fl":"HZ"},{"value":"\u6e58\u6f6d","data":"xiangtan","fl":"XT"},{"value":"\u6e5b\u6c5f","data":"zhanjiang","fl":"ZJ"},{"value":"\u6ea7\u9633","data":"liyang","fl":"LY"},{"value":"\u6ee8\u5dde","data":"binzhou","fl":"BZ"},{"value":"\u6f4d\u574a","data":"weifang","fl":"WF"},{"value":"\u6f6e\u5dde","data":"chaozhou","fl":"CZ"},{"value":"\u70df\u53f0","data":"yantai","fl":"YT"},{"value":"\u7126\u4f5c","data":"jiaozuo","fl":"JZ"},{"value":"\u7261\u4e39\u6c5f","data":"mudanjiang","fl":"MDJ"},{"value":"\u7389\u6eaa","data":"yuxi","fl":"YX"},{"value":"\u73e0\u6d77","data":"zhuhai","fl":"ZH"},{"value":"\u74e6\u623f\u5e97","data":"wafangdian","fl":"WFD"},{"value":"\u76d0\u57ce","data":"yancheng","fl":"YC"},{"value":"\u76d8\u9526","data":"panjin","fl":"PJ"},{"value":"\u77f3\u5634\u5c71","data":"shizuishan","fl":"SZS"},{"value":"\u77f3\u5bb6\u5e84","data":"shijiazhuang","fl":"SJZ"},{"value":"\u798f\u5dde","data":"fuzhou","fl":"FZ"},{"value":"\u79e6\u7687\u5c9b","data":"qinhuangdao","fl":"QHD"},{"value":"\u7ae0\u4e18","data":"zhangqiu","fl":"ZQ"},{"value":"\u7ecd\u5174","data":"shaoxing","fl":"SX"},{"value":"\u7ef5\u9633","data":"mianyang","fl":"MY"},{"value":"\u804a\u57ce","data":"liaocheng","fl":"LC"},{"value":"\u8087\u5e86","data":"zhaoqing","fl":"ZQ"},{"value":"\u80f6\u5357","data":"jiaonan","fl":"JN"},{"value":"\u80f6\u5dde","data":"jiaozhou","fl":"JZ"},{"value":"\u81ea\u8d21","data":"zigong","fl":"ZG"},{"value":"\u821f\u5c71","data":"zhoushan","fl":"ZS"},{"value":"\u829c\u6e56","data":"wuhu","fl":"WH"},{"value":"\u82cf\u5dde","data":"suzhou","fl":"SZ"},{"value":"\u8302\u540d","data":"maoming","fl":"MM"},{"value":"\u8346\u5dde","data":"jingzhou","fl":"JZ"},{"value":"\u8363\u6210","data":"rongcheng","fl":"RC"},{"value":"\u83b1\u5dde","data":"laizhou","fl":"LZ"},{"value":"\u83b1\u829c","data":"laiwu","fl":"LW"},{"value":"\u83b1\u897f","data":"laixi","fl":"LX"},{"value":"\u83cf\u6cfd","data":"heze","fl":"HZ"},{"value":"\u8425\u53e3","data":"yingkou","fl":"YK"},{"value":"\u846b\u82a6\u5c9b","data":"huludao","fl":"HLD"},{"value":"\u84ec\u83b1","data":"penglai","fl":"PL"},{"value":"\u8861\u6c34","data":"hengshui","fl":"HS"},{"value":"\u8862\u5dde","data":"quzhou","fl":"QZ"},{"value":"\u897f\u5b81","data":"xining","fl":"XN"},{"value":"\u897f\u5b89","data":"xian","fl":"XA"},{"value":"\u8bf8\u66a8","data":"zhuji","fl":"ZJ"},{"value":"\u8d35\u9633","data":"guiyang","fl":"GY"},{"value":"\u8d64\u5cf0","data":"chifeng","fl":"CF"},{"value":"\u8fde\u4e91\u6e2f","data":"lianyungang","fl":"LYG"},{"value":"\u9075\u4e49","data":"zunyi","fl":"ZY"},{"value":"\u90a2\u53f0","data":"xingtai","fl":"XT"},{"value":"\u90af\u90f8","data":"handan","fl":"HD"},{"value":"\u90d1\u5dde","data":"zhengzhou","fl":"ZZ"},{"value":"\u9102\u5c14\u591a\u65af","data":"eerduosi","fl":"EEDS"},{"value":"\u91cd\u5e86","data":"chongqing","fl":"CQ"},{"value":"\u91d1\u534e","data":"jinhua","fl":"JH"},{"value":"\u91d1\u575b","data":"jintan","fl":"JT"},{"value":"\u91d1\u660c","data":"jinchang","fl":"JC"},{"value":"\u94dc\u5ddd","data":"tongchuan","fl":"TC"},{"value":"\u94f6\u5ddd","data":"yinchuan","fl":"YC"},{"value":"\u9526\u5dde","data":"jinzhou","fl":"JZ"},{"value":"\u9547\u6c5f","data":"zhenjiang","fl":"ZJ"},{"value":"\u957f\u6625","data":"changchun","fl":"CC"},{"value":"\u957f\u6c99","data":"changsha","fl":"CS"},{"value":"\u957f\u6cbb","data":"changzhi","fl":"CZ"},{"value":"\u9633\u6c5f","data":"yangjiang","fl":"YJ"},{"value":"\u9633\u6cc9","data":"yangquan","fl":"YQ"},{"value":"\u9752\u5c9b","data":"qingdao","fl":"QD"},{"value":"\u978d\u5c71","data":"anshan","fl":"AS"},{"value":"\u97f6\u5173","data":"shaoguan","fl":"SG"},{"value":"\u9a6c\u978d\u5c71","data":"maanshan","fl":"MAS"},{"value":"\u9f50\u9f50\u54c8\u5c14","data":"qiqihaer","fl":"QQHE"},{"value":"\u5b89\u5e86","data":"anqing","fl":"aq"},{"value":"\u6d77\u5357\u5dde","data":"hainanzhou","fl":"hnz"},{"value":"\u4eb3\u5dde","data":"bozhou","fl":"bz"},{"value":"\u868c\u57e0","data":"bengbu","fl":"bb"},{"value":"\u5df4\u4e2d","data":"bazhong","fl":"bz"},{"value":"\u4fdd\u5c71","data":"baoshan","fl":"BS"},{"value":"\u5df4\u5f66\u6dd6\u5c14","data":"bayannaoer","fl":"byne"},{"value":"\u671d\u9633","data":"chaoyang","fl":"cy"},{"value":"\u6ec1\u5dde","data":"chuzhou","fl":"cz"},{"value":"\u6c60\u5dde","data":"chizhou","fl":"cz"},{"value":"\u695a\u96c4\u5dde","data":"chuxiongzhou","fl":"cxz"},{"value":"\u660c\u90fd","data":"changdu","fl":"cd"},{"value":"\u8fbe\u5dde","data":"dazhou","fl":"dz"},{"value":"\u5927\u7406\u5dde","data":"dalizhou","fl":"dlz"},{"value":"\u961c\u65b0","data":"fuxin","fl":"fx"},{"value":"\u9f99\u5ca9","data":"longyan","fl":"ly"},{"value":"\u629a\u5dde","data":"fuzhoushi","fl":"FS"},{"value":"\u5e7f\u5b89","data":"guangan","fl":"ga"},{"value":"\u5e7f\u5143","data":"guangyuan","fl":"gy"},{"value":"\u8d63\u5dde","data":"ganzhou","fl":"GZ"},{"value":"\u6dee\u5317","data":"huaibei","fl":"hb"},{"value":"\u6dee\u5357","data":"huainan","fl":"hn"},{"value":"\u9ec4\u5c71","data":"huangshan","fl":"hs"},{"value":"\u9e64\u58c1","data":"hebi","fl":"hb"},{"value":"\u9ec4\u5188","data":"huanggang","fl":"hg"},{"value":"\u547c\u4f26\u8d1d\u5c14","data":"hulunbeier","fl":"HLBE"},{"value":"\u664b\u57ce","data":"jincheng","fl":"JC"},{"value":"\u664b\u4e2d","data":"jinzhong","fl":"JZ"},{"value":"\u5409\u5b89","data":"jian","fl":"JA"},{"value":"\u666f\u5fb7\u9547","data":"jingdezhen","fl":"JDZ"},{"value":"\u5415\u6881","data":"lvliang","fl":"LL"},{"value":"\u8fbd\u9633","data":"liaoyang","fl":"ly"},{"value":"\u5185\u6c5f","data":"neijiang","fl":"nj"},{"value":"\u94dc\u9675","data":"tongling","fl":"tl"},{"value":"\u6f2f\u6cb3","data":"luohe","fl":"LH"},{"value":"\u4e3d\u6c5f","data":"lijiang","fl":"LJ"},{"value":"\u4e34\u6ca7","data":"lincang","fl":"LC"},{"value":"\u961c\u9633","data":"fuyangshi","fl":"fys"},{"value":"\u5357\u9633","data":"nanyang","fl":"ny"},{"value":"\u90a3\u66f2","data":"naqu","fl":"nq"},{"value":"\u5357\u5e73","data":"nanping","fl":"np"},{"value":"\u840d\u4e61","data":"pingxiang","fl":"PX"},{"value":"\u6fee\u9633","data":"puyang","fl":"py"},{"value":"\u8386\u7530","data":"putian","fl":"PT"},{"value":"\u6714\u5dde","data":"shuozhou","fl":"sz"},{"value":"\u5bbf\u5dde","data":"suzhoushi","fl":"szs"},{"value":"\u9042\u5b81","data":"suining","fl":"sn"},{"value":"\u4e0a\u9976","data":"shangrao","fl":"SR"},{"value":"\u5546\u4e18","data":"shangqiu","fl":"sq"},{"value":"\u968f\u5dde","data":"suizhou","fl":"sz"},{"value":"\u662d\u901a","data":"zhaotong","fl":"ZT"},{"value":"\u4e09\u660e","data":"sanming","fl":"SM"},{"value":"\u94c1\u5cad","data":"tieling","fl":"tl"},{"value":"\u4e50\u5c71","data":"leshan","fl":"ls"},{"value":"\u901a\u8fbd","data":"tongliao","fl":"TL"},{"value":"\u6587\u5c71\u5dde","data":"wenshanzhou","fl":"wsz"},{"value":"\u4e4c\u6d77","data":"wuhai","fl":"wh"},{"value":"\u5ba3\u57ce","data":"xuancheng","fl":"xc"},{"value":"\u5ffb\u5dde","data":"xinzhou","fl":"XZ"},{"value":"\u65b0\u4f59","data":"xinyu","fl":"XY"},{"value":"\u65b0\u4e61","data":"xinxiang","fl":"xx"},{"value":"\u8bb8\u660c","data":"xuchang","fl":"xc"},{"value":"\u4fe1\u9633","data":"xinyang","fl":"xy"},{"value":"\u8fd0\u57ce","data":"yuncheng","fl":"yc"},{"value":"\u96c5\u5b89","data":"yaan","fl":"ya"},{"value":"\u5b9c\u6625","data":"yichun","fl":"YC"},{"value":"\u9e70\u6f6d","data":"yingtan","fl":"YT"},{"value":"\u8d44\u9633","data":"ziyang","fl":"zy"},{"value":"\u5468\u53e3","data":"zhoukou","fl":"zk"},{"value":"\u9a7b\u9a6c\u5e97","data":"zhumadian","fl":"zmd"},{"value":"\u9999\u6e2f","data":"xianggang","fl":"XG"},{"value":"\u65b0\u5317","data":"xinbei","fl":"XB"},{"value":"\u53f0\u5317","data":"taibei","fl":"TB"},{"value":"\u6843\u56ed","data":"taoyuan","fl":"TY"},{"value":"\u65b0\u7af9","data":"xinzhu","fl":"XZ"},{"value":"\u82d7\u6817","data":"miaoli","fl":"ML"},{"value":"\u53f0\u4e2d","data":"taizhong","fl":"TZ"},{"value":"\u5f70\u5316","data":"zhanghua","fl":"ZH"},{"value":"\u5357\u6295","data":"nantou","fl":"NT"},{"value":"\u4e91\u6797","data":"yunlin","fl":"YL"},{"value":"\u5609\u4e49","data":"jiayixian","fl":"JYX"},{"value":"\u5609\u7fa9","data":"jiayi","fl":"JY"},{"value":"\u53f0\u5357","data":"tainan","fl":"TN"},{"value":"\u9ad8\u96c4","data":"gaoxiong","fl":"GX"},{"value":"\u5c4f\u4e1c","data":"pingdong","fl":"PD"},{"value":"\u53f0\u4e1c","data":"taidong","fl":"TD"},{"value":"\u82b1\u83b2","data":"hualian","fl":"HL"},{"value":"\u5b9c\u5170","data":"yilan","fl":"YL"},{"value":"\u91d1\u95e8","data":"jinmen","fl":"JM"},{"value":"\u6f8e\u6e56","data":"penghu","fl":"PH"},{"value":"\u57fa\u9686","data":"jilong","fl":"JL"},{"value":"\u767d\u94f6","data":"baiyin","fl":"BY"},{"value":"\u5929\u6c34","data":"tianshui","fl":"TS"},{"value":"\u5e86\u9633","data":"qingyang","fl":"QY"},{"value":"\u5e73\u51c9","data":"pingliang","fl":"pl"},{"value":"\u9647\u5357","data":"longnan","fl":"ln"},{"value":"\u5b9a\u897f","data":"dingxi","fl":"dx"},{"value":"\u6b66\u5a01","data":"wuwei","fl":"ww"},{"value":"\u5f20\u6396","data":"zhangye","fl":"zy"},{"value":"\u9152\u6cc9","data":"jiuquan","fl":"jq"},{"value":"\u4e34\u590f\u5dde","data":"linxiazhou","fl":"lxz"},{"value":"\u7518\u5357\u5dde","data":"gannanzhou","fl":"GN"},{"value":"\u548c\u7530","data":"hetian","fl":"ht"},{"value":"\u9ec4\u5357\u5dde","data":"huangnanzhou","fl":"hnz"},{"value":"\u9e21\u897f","data":"jixi","fl":"jx"},{"value":"\u5410\u9c81\u756a","data":"tulufan","fl":"tlf"},{"value":"\u677e\u539f","data":"songyuan","fl":"sy"},{"value":"\u77f3\u6cb3\u5b50","data":"shihezi","fl":"shz"},{"value":"\u6d77\u5317\u5dde","data":"haibeizhou","fl":"hbz"},{"value":"\u54c8\u5bc6","data":"hami","fl":"hm"},{"value":"\u4e94\u5bb6\u6e20","data":"wujiaqu","fl":"wjq"},{"value":"\u535a\u5dde","data":"bozhoushi","fl":"bzs"},{"value":"\u8fbd\u6e90","data":"liaoyuan","fl":"ly"},{"value":"\u4e4c\u5170\u5bdf\u5e03","data":"wulanchabu","fl":"ulcb"},{"value":"\u516d\u5b89","data":"liuan","fl":"la"},{"value":"\u7709\u5c71","data":"meishan","fl":"ms"},{"value":"\u6f33\u5dde","data":"zhangzhou","fl":"ZZ"},{"value":"\u5b81\u5fb7","data":"ningde","fl":"ND"},{"value":"\u5c71\u5357","data":"shannan","fl":"sn"},{"value":"\u8346\u95e8","data":"jingmen","fl":"jm"},{"value":"\u9ec4\u77f3","data":"huangshi","fl":"hs"},{"value":"\u5341\u5830","data":"shiyan","fl":"sy"},{"value":"\u9102\u5dde","data":"ezhou","fl":"ez"},{"value":"\u5b5d\u611f","data":"xiaogan","fl":"xg"},{"value":"\u54b8\u5b81","data":"xianning","fl":"xn"},{"value":"\u6797\u829d","data":"linzhi","fl":"lz"},{"value":"\u4e2d\u536b","data":"zhongwei","fl":"zw"},{"value":"\u963f\u52d2\u6cf0","data":"aletai","fl":"alt"},{"value":"\u56db\u5e73","data":"siping","fl":"sp"},{"value":"\u963f\u62c9\u5584\u76df","data":"alashanmeng","fl":"alsm"},{"value":"\u767d\u5c71","data":"baishan","fl":"bs"},{"value":"\u5854\u57ce","data":"tacheng","fl":"tc"},{"value":"\u767d\u57ce","data":"baicheng","fl":"bc"},{"value":"\u5ef6\u8fb9\u5dde","data":"yanbianzhou","fl":"ybz"},{"value":"\u4f0a\u7281\u54c8\u8428\u514b\u5dde","data":"yilihasakezhou","fl":"ylhskz"},{"value":"\u5580\u4ec0","data":"kashi","fl":"ks"},{"value":"\u9e64\u5c97","data":"hegang","fl":"hg"},{"value":"\u53cc\u9e2d\u5c71","data":"shuangyashan","fl":"sys"},{"value":"\u514b\u5b5c\u52d2\u82cf\u5dde","data":"kezilesuzhou","fl":"kzlsz"},{"value":"\u963f\u514b\u82cf","data":"akesu","fl":"aks"},{"value":"\u4f73\u6728\u65af","data":"jiamusi","fl":"jms"},{"value":"\u6d77\u4e1c","data":"haidong","fl":"hd"},{"value":"\u4e03\u53f0\u6cb3","data":"qitaihe","fl":"qth"},{"value":"\u9ed1\u6cb3","data":"heihe","fl":"hh"},{"value":"\u7ee5\u5316","data":"suihua","fl":"sh"},{"value":"\u5927\u5174\u5b89\u5cad","data":"daxinganling","fl":"dxal"},{"value":"\u8944\u6a0a","data":"xiangfan","fl":"xf"},{"value":"\u6c49\u4e2d","data":"hanzhong","fl":"hz"},{"value":"\u6986\u6797","data":"yulin","fl":"yl"},{"value":"\u5b89\u5eb7","data":"ankang","fl":"ak"},{"value":"\u5546\u6d1b","data":"shangluo","fl":"sl"},{"value":"\u963f\u91cc","data":"ali","fl":"al"},{"value":"\u65e5\u5580\u5219","data":"rikaze","fl":"rkz"},{"value":"\u679c\u6d1b\u5dde","data":"guoluozhou","fl":"glz"},{"value":"\u7389\u6811\u5dde","data":"yushuzhou","fl":"ysz"},{"value":"\u6d77\u897f\u5dde","data":"haixizhou","fl":"hxz"},{"value":"\u5434\u5fe0","data":"wuzhong","fl":"wz"},{"value":"\u901a\u5316","data":"tonghua","fl":"th"},{"value":"\u56fa\u539f","data":"guyuan","fl":"gy"},{"value":"\u660c\u5409\u5dde","data":"changjizhou","fl":"cjz"},{"value":"\u9ed4\u4e1c\u5357\u5dde","data":"qiandongnanzhou","fl":"qdnz"},{"value":"\u8fea\u5e86\u5dde","data":"diqingzhou","fl":"dqz"},{"value":"\u6012\u6c5f\u5dde","data":"nujiangzhou","fl":"njz"},{"value":"\u5fb7\u5b8f\u5dde","data":"dehongzhou","fl":"dhz"},{"value":"\u897f\u53cc\u7248\u7eb3\u5dde","data":"xishuangbannazhou","fl":"xsbnz"},{"value":"\u7ea2\u6cb3\u5dde","data":"honghezhou","fl":"hhz"},{"value":"\u601d\u8305","data":"simao","fl":"sm"},{"value":"\u9ed4\u5357\u5dde","data":"qiannanzhou","fl":"qnz"},{"value":"\u9ed4\u897f\u5357\u5dde","data":"qianxinanzhou","fl":"qxnz"},{"value":"\u6bd5\u8282","data":"bijie","fl":"bj"},{"value":"\u94dc\u4ec1","data":"tongren","fl":"tr"},{"value":"\u5b89\u987a","data":"anshun","fl":"as"},{"value":"\u6069\u65bd\u5dde","data":"enshizhou","fl":"esz"},{"value":"\u516d\u76d8\u6c34","data":"liupanshui","fl":"lps"},{"value":"\u51c9\u5c71\u5dde","data":"liangshanzhou","fl":"lsz"},{"value":"\u7518\u5b5c\u5dde","data":"ganzizhou","fl":"gzz"},{"value":"\u963f\u575d\u5dde","data":"abazhou","fl":"abz"},{"value":"\u5d07\u5de6","data":"chongzuo","fl":"cz"},{"value":"\u6765\u5bbe","data":"laibin","fl":"lb"},{"value":"\u6cb3\u6c60","data":"hechi","fl":"hc"},{"value":"\u8d3a\u5dde","data":"hezhou","fl":"hz"},{"value":"\u767e\u8272","data":"baise","fl":"bs"},{"value":"\u94a6\u5dde","data":"qinzhou","fl":"qz"},{"value":"\u8d35\u6e2f","data":"guigang","fl":"gg"},{"value":"\u9632\u57ce\u6e2f","data":"fangchenggang","fl":"fcg"},{"value":"\u68a7\u5dde","data":"wuzhou","fl":"wz"},{"value":"\u6e58\u897f\u5dde","data":"xiangxizhou","fl":"xxz"},{"value":"\u5a04\u5e95","data":"loudi","fl":"ld"},{"value":"\u6000\u5316","data":"huaihua","fl":"hh"},{"value":"\u6c38\u5dde","data":"yongzhou","fl":"yz"},{"value":"\u90f4\u5dde","data":"chenzhou","fl":"cz"},{"value":"\u76ca\u9633","data":"yiyang","fl":"yy"},{"value":"\u90b5\u9633","data":"shaoyang","fl":"sy"},{"value":"\u8861\u9633","data":"hengyang","fl":"hy"},{"value":"\u5174\u5b89\u76df","data":"xinganmeng","fl":"xam"},{"value":"\u9521\u6797\u90ed\u52d2\u76df","data":"xilinguolemeng","fl":"xlglm"},{"value":"\u7389\u6797","data":"yulinshi","fl":"yls"},{"value":"\u4f0a\u6625","data":"yichunshi","fl":"yc"}];
+
+    $('#autocomplete').autocomplete({
+        lookup: cities,
+        lookupLimit: 15,
+        width: '200px',
+        lookupFilter: function(suggestion, originalQuery, queryLowerCase){
+          var pattern = '^'+queryLowerCase;
+          return suggestion.data.match(pattern) || suggestion.fl.toLowerCase().match(pattern);
+        },
+        formatResult: function (suggestion, currentValue) {
+          return '<a href="/city/'+suggestion.data+'.html">'+suggestion.value+'</a>';
+        },
+        onSelect: function (suggestion) {
+        }
+    });
+
+    var checkCity = function(){
+      $.ajax({
+        type: "post",
+        dataType: 'json',
+        url: 'http://www.pm25.com/city/cityCheck',
+        data: {cityname: $('#autocomplete').val()},
+        success:function(res){
+          if(res.err == 0) {
+            window.location.href = '/city/'+res.areapy+'.html';
+          } else {
+            alert('对不起，该空气不存在!')
+          }
+        }
+      });
+    }
+
+    $('.search_btn').click(function(){
+      checkCity();
+    });
+
+    $('.search_city_text').keypress(function(e){
+      if(e.which == 13) {
+        checkCity();
+      }  
+    }); 
+
+    $('.city_default_shezhi').click(function(){
+      var currentCity = $('.city_default_shezhi').attr('city');
+      Cookie.set('default_city', currentCity, {
+        path: '/',
+        expires: 18000
+      });
+      $('.city_default_two').show();
+      $('.default_city').text(currentCity);
+      $('.city_default_shezhi').hide();
+    });
+
+    $('.city_default_shanchu').click(function(){
+      Cookie.remove('default_city', {
+        path: '/'
+      });
+      $('.city_default_two').hide();
+      $('.city_default_shezhi').show();
+    });
+
+  });
+
+});
+</script>
+<script>
+seajs.use(['common', 'tabs', 'echarts'], function(common, Tabs){
+
+$(document).ready(function(){
+    common.listHover();
+        new Tabs({
+        element: '.pj_area',
+        triggers: '.pj_area_tab a',
+        triggerType: 'click',
+        activeTriggerClass: 'current',
+        panels: '.pj_area_data_details',
+        activeIndex: 0
+    });
+
+    new Tabs({
+        element: '.panel_graph',
+        triggers: '.pg_area_tab a',
+        triggerType: 'click',
+        activeTriggerClass: 'current',
+        panels: '.pg_content',
+        activeIndex: 0
+    });
+
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('pg_content_24h'), 'shine'); 
+    
+    var option = {
+        color: ['#b22222','#79b05f', '#e58c65'],
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['HCHO','Gas','CO']
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ["27\u65e516\u65f6","27\u65e517\u65f6","27\u65e518\u65f6","27\u65e519\u65f6","27\u65e520\u65f6","27\u65e521\u65f6","27\u65e522\u65f6","27\u65e523\u65f6","28\u65e500\u65f6","28\u65e501\u65f6","28\u65e502\u65f6","28\u65e503\u65f6","28\u65e504\u65f6","28\u65e505\u65f6","28\u65e506\u65f6","28\u65e507\u65f6","28\u65e508\u65f6","28\u65e509\u65f6","28\u65e510\u65f6","28\u65e511\u65f6","28\u65e512\u65f6","28\u65e513\u65f6","28\u65e514\u65f6","28\u65e515\u65f6"],
+                axisLine: {
+                    lineStyle : {
+                      color: '#d4d4d4'
+                    }
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value} '
+                },
+                axisLine: {
+                    lineStyle : {
+                      color: '#d4d4d4'
+                    }
+                }
+            }
+        ],
+        series : [
+            {
+                name:'CO',
+                type:'line',
+                data:[<%= userlist[userlist.length-1].value %>,<%= userlist[userlist.length-2].value  %>,<%= userlist[userlist.length-3].value  %>,<%= userlist[userlist.length-4].value  %>,<%= userlist[userlist.length-5].value  %>,<%= userlist[userlist.length-6].value  %>,<%= userlist[userlist.length-7].value  %>,<%= userlist[userlist.length-8].value  %>,<%= userlist[userlist.length-9].value  %>,<%= userlist[userlist.length-10].value  %>,<%= userlist[userlist.length-11].value  %>,<%= userlist[userlist.length-12].value  %>,<%= userlist[userlist.length-13].value  %>,<%= userlist[userlist.length-14].value  %>,<%= userlist[userlist.length-15].value  %>,<%= userlist[userlist.length-16].value  %>,<%= userlist[userlist.length-17].value  %>,<%= userlist[userlist.length-18].value  %>,<%= userlist[userlist.length-19].value  %>,<%= userlist[userlist.length-20].value  %>,<%= userlist[userlist.length-21].value  %>,<%= userlist[userlist.length-22].value  %>,<%= userlist[userlist.length-23].value  %>,<%= userlist[userlist.length-24].value  %>]            },
+            {
+                name:'Gas',
+                type:'line',
+                data:[<%= userlist1[userlist1.length-1].value %>,<%= userlist1[userlist1.length-2].value  %>,<%= userlist1[userlist1.length-3].value  %>,<%= userlist1[userlist1.length-4].value  %>,<%= userlist1[userlist1.length-5].value  %>,<%= userlist1[userlist1.length-6].value  %>,<%= userlist1[userlist1.length-7].value  %>,<%= userlist1[userlist1.length-8].value  %>,<%= userlist1[userlist1.length-9].value  %>,<%= userlist1[userlist1.length-10].value  %>,<%= userlist1[userlist1.length-11].value  %>,<%= userlist1[userlist1.length-12].value  %>,<%= userlist1[userlist1.length-13].value  %>,<%= userlist1[userlist1.length-14].value  %>,<%= userlist1[userlist1.length-15].value  %>,<%= userlist1[userlist1.length-16].value  %>,<%= userlist1[userlist1.length-17].value  %>,<%= userlist1[userlist1.length-18].value  %>,<%= userlist1[userlist1.length-19].value  %>,<%= userlist1[userlist1.length-20].value  %>,<%= userlist1[userlist1.length-21].value  %>,<%= userlist1[userlist1.length-22].value  %>,<%= userlist1[userlist1.length-23].value  %>,<%= userlist1[userlist1.length-24].value  %>]            },
+            {
+                name:'HCHO',
+                type:'line',
+                data:[<%= userlist2[userlist2.length-1].value %>,<%= userlist2[userlist2.length-2].value  %>,<%= userlist2[userlist2.length-3].value  %>,<%= userlist2[userlist2.length-4].value  %>,<%= userlist2[userlist2.length-5].value  %>,<%= userlist2[userlist2.length-6].value  %>,<%= userlist2[userlist2.length-7].value  %>,<%= userlist2[userlist2.length-8].value  %>,<%= userlist2[userlist2.length-9].value  %>,<%= userlist2[userlist2.length-10].value  %>,<%= userlist2[userlist2.length-11].value  %>,<%= userlist2[userlist2.length-12].value  %>,<%= userlist2[userlist2.length-13].value  %>,<%= userlist2[userlist2.length-14].value  %>,<%= userlist2[userlist2.length-15].value  %>,<%= userlist2[userlist2.length-16].value  %>,<%= userlist2[userlist2.length-17].value  %>,<%= userlist2[userlist2.length-18].value  %>,<%= userlist2[userlist2.length-19].value  %>,<%= userlist2[userlist2.length-20].value  %>,<%= userlist2[userlist2.length-21].value  %>,<%= userlist2[userlist2.length-22].value  %>,<%= userlist2[userlist2.length-23].value  %>,<%= userlist2[userlist2.length-24].value  %>]            }
+        ]
+    };   
+    // 为echarts对象加载数据 
+    myChart.setOption(option);
+
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('pg_content_30d'), 'shine');
+    
+    var option = {
+        color: ['#b22222','#79b05f', '#e58c65'],
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['HCHO','Gas','CO']
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ["27\u65e5","28\u65e5","29\u65e5","30\u65e5","01\u65e5","02\u65e5","03\u65e5","04\u65e5","05\u65e5","06\u65e5","07\u65e5","08\u65e5","09\u65e5","10\u65e5","11\u65e5","12\u65e5","13\u65e5","14\u65e5","15\u65e5","16\u65e5","17\u65e5","18\u65e5","19\u65e5","20\u65e5","21\u65e5","22\u65e5","23\u65e5","24\u65e5","26\u65e5","27\u65e5"],
+                axisLine: {
+                    lineStyle : {
+                      color: '#d4d4d4'
+                    }
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value} '
+                },
+                axisLine: {
+                    lineStyle : {
+                      color: '#d4d4d4'
+                    }
+                }
+            }
+        ],
+        series : [
+            {
+                name:'CO',
+                type:'line',
+                data:[<%= userlist[userlist.length-1].value %>,<%= userlist[userlist.length-2].value  %>,<%= userlist[userlist.length-3].value  %>,<%= userlist[userlist.length-4].value  %>,<%= userlist[userlist.length-5].value  %>,<%= userlist[userlist.length-6].value  %>,<%= userlist[userlist.length-7].value  %>,<%= userlist[userlist.length-8].value  %>,<%= userlist[userlist.length-9].value  %>,<%= userlist[userlist.length-10].value  %>,<%= userlist[userlist.length-11].value  %>,<%= userlist[userlist.length-12].value  %>,<%= userlist[userlist.length-13].value  %>,<%= userlist[userlist.length-14].value  %>,<%= userlist[userlist.length-15].value  %>,<%= userlist[userlist.length-16].value  %>,<%= userlist[userlist.length-17].value  %>,<%= userlist[userlist.length-18].value  %>,<%= userlist[userlist.length-19].value  %>,<%= userlist[userlist.length-20].value  %>,<%= userlist[userlist.length-21].value  %>,<%= userlist[userlist.length-22].value  %>,<%= userlist[userlist.length-23].value  %>,<%= userlist[userlist.length-24].value  %>,<%= userlist[userlist.length-25].value  %>,<%= userlist[userlist.length-26].value  %>,<%= userlist[userlist.length-27].value  %>,<%= userlist[userlist.length-28].value  %>,<%= userlist[userlist.length-29].value  %>,<%= userlist[userlist.length-30].value  %>]            },
+            {
+                name:'Gas',
+                type:'line',
+                data:[<%= userlist1[userlist1.length-1].value %>,<%= userlist1[userlist1.length-2].value  %>,<%= userlist1[userlist1.length-3].value  %>,<%= userlist1[userlist1.length-4].value  %>,<%= userlist1[userlist1.length-5].value  %>,<%= userlist1[userlist1.length-6].value  %>,<%= userlist1[userlist1.length-7].value  %>,<%= userlist1[userlist1.length-8].value  %>,<%= userlist1[userlist1.length-9].value  %>,<%= userlist1[userlist1.length-10].value  %>,<%= userlist1[userlist1.length-11].value  %>,<%= userlist1[userlist1.length-12].value  %>,<%= userlist1[userlist1.length-13].value  %>,<%= userlist1[userlist1.length-14].value  %>,<%= userlist1[userlist1.length-15].value  %>,<%= userlist1[userlist1.length-16].value  %>,<%= userlist1[userlist1.length-17].value  %>,<%= userlist1[userlist1.length-18].value  %>,<%= userlist1[userlist1.length-19].value  %>,<%= userlist1[userlist1.length-20].value  %>,<%= userlist1[userlist1.length-21].value  %>,<%= userlist1[userlist1.length-22].value  %>,<%= userlist1[userlist1.length-23].value  %>,<%= userlist1[userlist1.length-24].value  %>,<%= userlist1[userlist1.length-25].value  %>,<%= userlist1[userlist1.length-26].value  %>,<%= userlist1[userlist1.length-27].value  %>,<%= userlist1[userlist1.length-28].value  %>,<%= userlist1[userlist1.length-29].value  %>,<%= userlist1[userlist1.length-30].value  %>]            },
+            {
+                name:'HCHO',
+                type:'line',
+                data:[<%= userlist2[userlist2.length-1].value %>,<%= userlist2[userlist2.length-2].value  %>,<%= userlist2[userlist2.length-3].value  %>,<%= userlist2[userlist2.length-4].value  %>,<%= userlist2[userlist2.length-5].value  %>,<%= userlist2[userlist2.length-6].value  %>,<%= userlist2[userlist2.length-7].value  %>,<%= userlist2[userlist2.length-8].value  %>,<%= userlist2[userlist2.length-9].value  %>,<%= userlist2[userlist2.length-10].value  %>,<%= userlist2[userlist2.length-11].value  %>,<%= userlist2[userlist2.length-12].value  %>,<%= userlist2[userlist2.length-13].value  %>,<%= userlist2[userlist2.length-14].value  %>,<%= userlist2[userlist2.length-15].value  %>,<%= userlist2[userlist2.length-16].value  %>,<%= userlist2[userlist2.length-17].value  %>,<%= userlist2[userlist2.length-18].value  %>,<%= userlist2[userlist2.length-19].value  %>,<%= userlist2[userlist2.length-20].value  %>,<%= userlist2[userlist2.length-21].value  %>,<%= userlist2[userlist2.length-22].value  %>,<%= userlist2[userlist2.length-23].value  %>,<%= userlist2[userlist2.length-24].value  %>,<%= userlist2[userlist2.length-25].value  %>,<%= userlist2[userlist2.length-26].value  %>,<%= userlist2[userlist2.length-27].value  %>,<%= userlist2[userlist2.length-28].value  %>,<%= userlist2[userlist2.length-29].value  %>,<%= userlist2[userlist2.length-30].value  %>]            }
+        ]
+    };   
+    // 为echarts对象加载数据 
+    myChart.setOption(option);
+
+    
+    
+});
+
+});
+</script>

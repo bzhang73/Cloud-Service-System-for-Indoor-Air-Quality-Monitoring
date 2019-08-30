@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>特殊人群防护-老人小孩</title>
+<link href="http://www.pm25.com/css/common.css" rel="stylesheet" type="text/css" />
+ <link href="http://www.pm25.com/css/news.css" rel="stylesheet" type="text/css" /> <script src="http://www.pm25.com/sea-modules/seajs/seajs/2.2.1/sea.js"></script>
+<script src="http://www.pm25.com/sea-modules/conf/common.js"></script>
+<!--[if IE]>
+<style type="text/css">
+.mini_xiaotieshi a:hover{filter:alpha(opacity=100);}
+</style>
+<![endif]-->
+</head>
+
+<body>
+
+
+<!--导航-->
+<div class="menu_width">
+         <div class="menu">
+              <ul class="menu_list">
+                    <!---当前页面是哪个栏目，只用在li的class里再加个" current "就行了-->
+                    <li class="menu_2"><a  href="Shishi.html"><i></i><span>实时监测</span></a></li>
+                    <li class="menu_3"><a  class="current"  href="People.html"><i></i><span>特殊人群</span></a></li>
+                    <li class="menu_4"><a  href="Guanyu.html"><i></i><span>关于和反馈</span></a></li>
+                    <li class="menu_5"><a  href="logout.html"><i></i><span>我要注销</span></a></li>
+                    <div class="clear"></div>
+              </ul>
+         </div>   
+</div>
+<!--banner上的阴影-->
+<div class="banner_shadow"></div>
+
+<script>
+seajs.use(['$'], function(){
+$(function(){
+
+  // 头部搜索
+  $('.topnav_search_btn').click(function(){
+    var str = encodeURI($('.topnav_search_city_text').val());
+    window.location = '/so/' + str + '/all';
+  });
+
+  $('.topnav_search_city_text').bind("keyup", function(event){
+    if(event.keyCode == 13){
+      var str = encodeURI($('.topnav_search_city_text').val());
+      window.location = '/so/' + str + '/all';
+    }
+  });
+
+  $(".topnav_sitemap").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_sitemap_active").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_phone").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+
+  $(".topnav_app_active").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+  
+});
+});
+</script>
+
+<!--主体内容-->
+            <!--当前栏目的标题-->
+            <div class="news_list_title">
+                <h3>老人小孩</h3>
+                
+                <div class="clear"></div>
+            </div>
+             <ul class="nrl_content news_list_content">
+                  <!---鼠标划到li上的时候，增加“nrl_item_hover”-->
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Lr1.html"><img src="picture/Laoren1.jpg" /></a>
+                       <dl>
+                             <dt><a href="Lr1.html">空气污染对老年人健康的影响</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>李钢</span><i>|</i>
+                                     <span>2015-10-29</span><i>|</i>
+                             </p>
+                             <dd>人体进入老年期，各项身体机能都在下降，比较容易受到环境因素的影响而诱发各种疾病。 而现代生活中，老人大部分时间都生活在室内，更易呼吸到有害物质，当室内污染物超过一定标准时，老人易患各类疾病。</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Lr2.html"><img src="picture/Laoren3.jpg" /></a>
+                       <dl>
+                             <dt><a href="Lr2.html">室内空气污染对儿童会造成哪些危害?</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>玉泉</span><i>|</i>
+                                     <span>2016-08-30</span><i>|</i>
+                             </p>
+                             <dd>无论从儿童的身体还是智力发育看，室内环境污染对儿童危害不容忽视。
+</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Lr3.html"><img src="picture/Laoren6.jpg" /></a>
+                       <dl>
+                             <dt><a href="Lr3.html">老年人怎么防雾霾？</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>范大鹏</span><i>|</i>
+                                     <span>2015-11-10</span><i>|</i>
+                             </p>
+                             <dd>老年人由于血压高，抵抗力差，防范意识弱成为了当下空气污染首要的危害对象。到底该如何防范呢？</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Lr4.html"><img src="picture/Laoren7.jpg" /></a>
+                       <dl>
+                             <dt><a href="Lr4.html">怎么让空气污染远离孩子</a></dt>
+                             <p class="news_list_attribute">
+                                     <span></span><i>|</i>
+                                     <span>2015-06-23</span><i>|</i>
+                             </p>
+                             <dd>空气污染，能够直接影响大家的正常生活，甚至使大家患病。大气中假如长期含有大量的污染物，那么，对于人类乃至于其他的动物植物来说，都是不利于生存的。而且，空气污染还有转变为其他的污染，造成一连串的污染影响，所以，咱们在保护孩子的同时，要知道该如何别让空气污染伤害孩子。</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+            </ul>       
+    </div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+seajs.use(['$', 'cookie'], function($, Cookie){
+  $(document).ready(function(){
+    $(window).scroll(function(){
+      var curh = $(document).scrollTop();
+      if(curh > 300) {
+      $('.quick_item').fadeIn(100);
+      }else{
+      $('.quick_item').fadeOut(100);
+      }
+    });
+    $('.quick_item_back').click(function(){
+    $('html, body').animate({scrollTop:0}, 'slow');});
+
+  });
+});
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_30089631'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30089631' type='text/javascript'%3E%3C/script%3E"));</script>
+<div style="display:none">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb3de58f8471ab2214a3e7d885a987266' type='text/javascript'%3E%3C/script%3E"));
+</script></div>
+<script>
+seajs.use(['$', 'switchable', 'dadadan'], function($){
+$(document).ready(function(){
+
+  $('.lzi_pic').switchable({
+    triggers: $('.lzi_num .tr-point'),
+    triggerType: 'click',
+    currentTriggerCls: 'current',
+    autoplay: true,
+    interval: 3,
+    panels: 'li',
+    effect: 'fade',
+    /* fade effect only supports steps == 1 */
+    // steps: 4,
+    easing: 'ease-in-out',
+    prev: $('.lzi_numbtn_pre'),
+    next: $('.lzi_numbtn_next'),
+    onSwitch: function(event, currentIndex) {
+      var api = this;
+      api.prevBtn.toggleClass('disabled', currentIndex === 0);
+      api.nextBtn.toggleClass('disabled', currentIndex === api.length - 1);
+    }
+  });
+
+});
+});
+</script>

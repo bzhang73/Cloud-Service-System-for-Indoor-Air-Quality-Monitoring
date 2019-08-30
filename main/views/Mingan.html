@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>特殊人群防护-敏感人群</title>
+<link href="http://www.pm25.com/css/common.css" rel="stylesheet" type="text/css" />
+ <link href="http://www.pm25.com/css/news.css" rel="stylesheet" type="text/css" /> <script src="http://www.pm25.com/sea-modules/seajs/seajs/2.2.1/sea.js"></script>
+<script src="http://www.pm25.com/sea-modules/conf/common.js"></script>
+<!--[if IE]>
+<style type="text/css">
+.mini_xiaotieshi a:hover{filter:alpha(opacity=100);}
+</style>
+<![endif]-->
+</head>
+
+<body>
+
+<!--导航-->
+<div class="menu_width">
+         <div class="menu">
+              <ul class="menu_list">
+                    <!---当前页面是哪个栏目，只用在li的class里再加个" current "就行了-->
+                    <li class="menu_2"><a  href="Shishi.html"><i></i><span>实时监测</span></a></li>
+                    <li class="menu_3"><a  class="current"  href="People.html"><i></i><span>特殊人群</span></a></li>
+                    <li class="menu_4"><a  href="Guanyu.html"><i></i><span>关于和反馈</span></a></li>
+                    <li class="menu_5"><a  href="logout.html"><i></i><span>我要注销</span></a></li>
+                    <div class="clear"></div>
+              </ul>
+         </div>   
+</div>
+<!--banner上的阴影-->
+<div class="banner_shadow"></div>
+
+<script>
+seajs.use(['$'], function(){
+$(function(){
+
+  // 头部搜索
+  $('.topnav_search_btn').click(function(){
+    var str = encodeURI($('.topnav_search_city_text').val());
+    window.location = '/so/' + str + '/all';
+  });
+
+  $('.topnav_search_city_text').bind("keyup", function(event){
+    if(event.keyCode == 13){
+      var str = encodeURI($('.topnav_search_city_text').val());
+      window.location = '/so/' + str + '/all';
+    }
+  });
+
+  $(".topnav_sitemap").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_sitemap_active").mouseover(function(){
+    $('.topnav_sitemap_active').show();
+  }).mouseout(function(){
+    $('.topnav_sitemap_active').hide();
+  });
+
+  $(".topnav_phone").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+
+  $(".topnav_app_active").mouseover(function(){
+    $('.topnav_app_active').show();
+  }).mouseout(function(){
+    $('.topnav_app_active').hide();
+  });
+  
+});
+});
+</script>
+
+<!--主体内容-->
+            <!--当前栏目的标题-->
+            <div class="news_list_title">
+                <h3>敏感人群</h3>
+                
+                <div class="clear"></div>
+            </div>
+             <ul class="nrl_content news_list_content">
+                  <!---鼠标划到li上的时候，增加“nrl_item_hover”-->
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Mg1.html"><img src="picture/Mingan1.jpg" /></a>
+                       <dl>
+                             <dt><a href="Mg1.html">空气污染与过敏有何关联？</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>2014-04-18</span><i>|</i>
+                             </p>
+                             <dd>老人、孩子应该尽量选在天气好的时候,多外出晒晒太阳,以增进钙的吸收。如果感觉孩子和老人实在缺钙,例如出现腿抽筋等情况,可以适当吃一些复合钙剂,以增加钙的摄取。补钙最好的方式还是靠均衡饮食,通过饮食来自然补充最好。</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Mg2.html"><img src="picture/Mingan2.jpg" /></a>
+                       <dl>
+                             <dt><a href="Mg2.html">空气污染对敏感体质人群的有什么影响，该如何预防？</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>2015-09-20</span><i>|</i>
+                             </p>
+                             <dd>很多研究表明,过敏症发病率增加与空气污染密切相关。空气污染又是如何导致过敏的，又该如何预防？
+</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+                                    <li class="nrl_item">
+                        <a class="list_img" href="Mg3.html"><img src="picture/Mingan5.jpg" /></a>
+                       <dl>
+                             <dt><a href="Mg3.html">空气污染可致皮肤提前衰老</a></dt>
+                             <p class="news_list_attribute">
+                                     <span>2014-10-11</span><i>|</i>
+                             </p>
+                             <dd>雾霾天能见度小，空气中附着的浮沉、颗粒等污染物总是能跟肌肤亲密接触，难舍难分。更多人一到雾霾天就叫苦不迭惊恐万分，雾霾到底对肌肤伤害有多大？我们又该怎么应对？</dd>
+                       </dl>
+                        <div class="clear"></div>
+                  </li>
+                  <div class="clear"></div>
+            </ul>       
+    </div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+seajs.use(['$', 'cookie'], function($, Cookie){
+  $(document).ready(function(){
+    $(window).scroll(function(){
+      var curh = $(document).scrollTop();
+      if(curh > 300) {
+      $('.quick_item').fadeIn(100);
+      }else{
+      $('.quick_item').fadeOut(100);
+      }
+    });
+    $('.quick_item_back').click(function(){
+    $('html, body').animate({scrollTop:0}, 'slow');});
+
+  });
+});
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_30089631'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30089631' type='text/javascript'%3E%3C/script%3E"));</script>
+<div style="display:none">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb3de58f8471ab2214a3e7d885a987266' type='text/javascript'%3E%3C/script%3E"));
+</script></div>
+<script>
+seajs.use(['$', 'switchable', 'dadadan'], function($){
+$(document).ready(function(){
+
+  $('.lzi_pic').switchable({
+    triggers: $('.lzi_num .tr-point'),
+    triggerType: 'click',
+    currentTriggerCls: 'current',
+    autoplay: true,
+    interval: 3,
+    panels: 'li',
+    effect: 'fade',
+    /* fade effect only supports steps == 1 */
+    // steps: 4,
+    easing: 'ease-in-out',
+    prev: $('.lzi_numbtn_pre'),
+    next: $('.lzi_numbtn_next'),
+    onSwitch: function(event, currentIndex) {
+      var api = this;
+      api.prevBtn.toggleClass('disabled', currentIndex === 0);
+      api.nextBtn.toggleClass('disabled', currentIndex === api.length - 1);
+    }
+  });
+
+});
+});
+</script>
